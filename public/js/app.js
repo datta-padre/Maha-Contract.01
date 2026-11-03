@@ -50,8 +50,6 @@ if (mode === 'register') {
         return;
     }
 
-    console.log(`Registering user: ${phone}, ${email}, Role: ${currentRole}`);
-
     fetch(`/register/${currentRole}`, {
         method: 'POST',
         headers: {
@@ -106,51 +104,38 @@ if (mode === 'register') {
         const email = document.getElementById('loginEmail').value;
         const pass = document.getElementById('loginPass').value;
 
-        console.log("role", role , "Email", email , "password", pass );
-
-        fetch('/login', {
+        fetch(`/login/${role}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email, password: pass, role: role })
-        }).then(response => response.json()).then(data => {
-            console.log('Server Response:', data);
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: pass
+            })
+        })
+        .then(async response => {
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Login failed.');
+            }
+
+            return data;
+        })
+        .then(data => {
             if (data.success) {
-                alert('Login successful! Redirecting to dashboard...');
-                window.location.href = data.redirect || `/${role}/dashboard`;
+                window.location.href = data.redirect || `/${role}`;
             } else {
-                alert(data.message || 'Login failed. Please check your credentials.');
+                alert(data.message || 'Login failed. Please try again.');
             }
         })
         .catch(error => {
-            console.error('Error during login:', error);
-            alert('An error occurred. Please try again later.');    
-        }); 
-
-        }
-}
-
-
-function submitAdmin() {
-    const email = document.getElementById('adminEmail').value;
-    const pass = document.getElementById('adminPass').value;
-
-    fetch('/master-admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, password: pass })
-    })
-    .then(function (response) { return response.json(); })
-    .then(function (data) {
-        if (data.success) {
-            window.location.href = data.redirect || '/master-admin';
-        } else {
-            alert(data.message || 'Intrusion Blocked: Invalid Admin Credentials.');
-        }
-    })
-    .catch(function (err) {
-        console.error(err);
-        alert('Admin login failed. Please try again.');
-    });
+            console.error('Login Error:', error);
+            alert(error.message || 'Something went wrong. Please try again.');
+        });
+    }
 }
 
 function initThemeToggle() {

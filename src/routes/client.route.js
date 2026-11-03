@@ -17,10 +17,21 @@ router.get("/contact-us", (req, res) => {
     res.render("userView/contactUs");
 });
 
+router.post("/contact", (req, res) => {
+    const { name, email, message } = req.body;
+    res.redirect("/contact-us");
+});
+
 router.post("/register/:role", (req, res) => {
     const { phone, email, password } = req.body;
     const role = req.params.role;
     res.json({ success: true, message: "User registered successfully" });
+});
+
+router.post("/login/:role", (req, res) => {
+    const { email, password } = req.body;
+    const role = req.params.role;
+    res.json({ success: true, message: "User logged in successfully" });
 });
 
 export default router;

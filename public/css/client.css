@@ -405,6 +405,11 @@ h1, h2, h3 { font-family: 'Outfit', sans-serif; }
 
 .logo span { color: #f97316; }
 
+.navbar > a,
+.footer-brand > a {
+    text-decoration: none;
+}
+
 /* Global Logo Override */
 .logo .logo-icon { display: none !important; }
 
