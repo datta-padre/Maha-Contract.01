@@ -1,0 +1,196 @@
+:root {
+  --privacy-page-bg: #000;
+  --privacy-card-bg: #000;
+  --privacy-border: rgba(148, 163, 184, 0.18);
+  --privacy-divider: #000;
+  --privacy-heading: #f8fafc;
+  --privacy-copy: #f8fafc;
+  --privacy-muted: #94a3b8;
+  --privacy-accent: #f97316;
+  --privacy-accent-soft: #000;
+  --privacy-shadow: rgba(0, 0, 0, 0.24);
+}
+
+:root.light-theme {
+  --privacy-page-bg: #f1f5f9;
+  --privacy-card-bg: #ffffff;
+  --privacy-border: #dbe3ee;
+  --privacy-divider: #e8edf4;
+  --privacy-heading: #0f172a;
+  --privacy-copy: #475569;
+  --privacy-muted: #64748b;
+  --privacy-accent: #c2410c;
+  --privacy-accent-soft: #fff7ed;
+  --privacy-shadow: rgba(15, 23, 42, 0.08);
+}
+
+.privacy-page {
+  min-height: 100vh;
+  padding: clamp(7rem, 11vw, 9rem) 1.25rem 5rem;
+  background:
+    radial-gradient(ellipse at 12% 8%, var(--privacy-accent-soft), transparent 34rem),
+    var(--privacy-page-bg);
+  color: var(--privacy-copy);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.privacy-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.privacy-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.privacy-document {
+  width: 100%;
+  padding: clamp(1.5rem, 5vw, 3.25rem);
+  border: 1px solid var(--privacy-border);
+  border-radius: 20px;
+  background: var(--privacy-card-bg);
+  box-shadow: 0 18px 48px var(--privacy-shadow);
+  transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.privacy-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.65rem 0;
+  border-bottom: 1px solid var(--privacy-divider);
+  scroll-margin-top: 100px;
+}
+
+.privacy-section:first-child {
+  padding-top: 0;
+}
+
+.privacy-section:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.privacy-section-number {
+  display: flex;
+  flex: 0 0 42px;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--privacy-border);
+  border-radius: 12px;
+  background: var(--privacy-accent-soft);
+  color: var(--privacy-accent);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.privacy-section > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.privacy-section h2 {
+  margin: 0.15rem 0 0.65rem;
+  color: var(--privacy-heading);
+  font-family: "Outfit", "Inter", sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.privacy-section p {
+  margin: 0 0 0.8rem;
+  color: var(--privacy-copy);
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.85;
+}
+
+.privacy-section p:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-section a {
+  color: var(--privacy-accent);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 160ms ease;
+}
+
+.privacy-section a:hover {
+  color: var(--primary-dark);
+}
+
+.privacy-section:hover .privacy-section-number {
+  border-color: var(--privacy-accent);
+  background: var(--privacy-accent);
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .privacy-page {
+    padding: 6.5rem 1rem 3.5rem;
+  }
+
+  .privacy-document {
+    padding: 1.75rem 1.5rem;
+    border-radius: 16px;
+  }
+
+  .privacy-section {
+    gap: 1rem;
+    padding: 1.4rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .privacy-page {
+    padding: 5.75rem 0.75rem 2.5rem;
+  }
+
+  .privacy-document {
+    padding: 1.35rem 1rem;
+    border-radius: 14px;
+  }
+
+  .privacy-section {
+    gap: 0.75rem;
+    padding: 1.2rem 0;
+  }
+
+  .privacy-section-number {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    font-size: 0.7rem;
+  }
+
+  .privacy-section h2 {
+    font-size: 1.08rem;
+  }
+
+  .privacy-section p {
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .privacy-page,
+  .privacy-document,
+  .privacy-section-number,
+  .privacy-section a {
+    transition: none;
+  }
+}

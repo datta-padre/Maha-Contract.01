@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Maha Contract | System Vendor</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/admin/style.css">
+    <link rel="stylesheet" href="/admin/css/style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <!-- CKEditor -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Mobile Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+
+        <div class="logo">
+            <img src="/images/logo.jpg" alt="Logo" class="logo-image">
+            <span class="logo-text">Maha Contract</span>
+        </div>
+
+        <div class="menu1">
+
+            <!-- Dashboard -->
+            <a href="/houseowner" class="menu-item">
+                <i class="fas fa-chart-line"></i>
+                <span class="menu-item-text">Dashboard</span>
+            </a>
+
+            <!-- Orders Menu -->
+            <div class="menu-item submenu-toggle" data-target="submenu-orders">
+                <i class="fa-solid fa-shopping-cart"></i>
+                <span class="menu-item-text">Orders</span>
+                <i class="fas fa-chevron-down ms-auto toggle-icon"></i>
+            </div>
+
+            <div class="submenu" id="submenu-orders">
+
+                <a href="/houseowner/order_list/pending" class="menu-item">
+                    <i class="fas fa-clock"></i>
+                    <span class="menu-item-text">Pending</span>
+                </a>
+
+                <a href="/houseowner/order_list/dispatched" class="menu-item">
+                    <i class="fas fa-truck"></i>
+                    <span class="menu-item-text">Dispatched</span>
+                </a>
+
+                <a href="/houseowner/order_list/delivered" class="menu-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span class="menu-item-text">Delivered</span>
+                </a>
+
+                <a href="/houseowner/order_list/cancelled" class="menu-item">
+                    <i class="fas fa-times-circle"></i>
+                    <span class="menu-item-text">Cancelled</span>
+                </a>
+
+                <a href="/houseowner/order_list/returned" class="menu-item">
+                    <i class="fas fa-undo"></i>
+                    <span class="menu-item-text">Returned</span>
+                </a>
+
+            </div>
+
+            <!-- About Company -->
+            <a href="/houseowner/about_company" class="menu-item">
+                <i class="fas fa-building"></i>
+                <span class="menu-item-text">About Company</span>
+            </a>
+
+            <!-- Banner -->
+            <a href="/houseowner/banner" class="menu-item">
+                <i class="fas fa-image"></i>
+                <span class="menu-item-text">Banner</span>
+            </a>
+
+            <!-- Category -->
+            <a href="/houseowner/category" class="menu-item">
+                <i class="fas fa-layer-group"></i>
+                <span class="menu-item-text">Category</span>
+            </a>
+
+            <!-- Product Menu -->
+            <div class="menu-item submenu-toggle" data-target="submenu-products">
+                <i class="fa-solid fa-box"></i>
+                <span class="menu-item-text">Product</span>
+                <i class="fas fa-chevron-down ms-auto toggle-icon"></i>
+            </div>
+
+            <div class="submenu" id="submenu-products">
+
+                <a href="/admin/add_product" class="menu-item">
+                    <i class="fas fa-plus-circle"></i>
+                    <span class="menu-item-text">Add Product</span>
+                </a>
+
+                <a href="/admin/product_list" class="menu-item">
+                    <i class="fas fa-list"></i>
+                    <span class="menu-item-text">Product List</span>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+
+        <!-- Top Navbar -->
+        <nav class="top-navbar shadow-lg">
+
+            <button class="toggle-btn" id="toggleSidebar" type="button">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="user-profile" id="userProfile">
+
+              <button id="houseowner-theme-toggle"
+                    class="houseowner-theme-toggle"
+                    type="button"
+                    aria-label="Switch to dark mode"
+                    title="Switch to dark mode">
+
+                    <i class="fa-solid fa-sun" aria-hidden="true"></i>
+
+                </button>
+
+
+                <!-- Settings -->
+                <i class="fas fa-cog settings-icon me-4 text-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#settingsModal"></i>
+
+                <!-- User Avatar -->
+                <img src="/upload" alt="Open user menu" class="user-avatar" role="button" tabindex="0" aria-haspopup="menu" aria-expanded="false" aria-controls="userDropdown">
+
+                <!-- User Dropdown -->
+                <div class="dropdown-menu user-profile-dropdown" id="userDropdown" role="menu" aria-label="User menu">
+                    <div class="user-profile-menu-header">
+                        <img src="/upload" alt="Datta Padre">
+                        <div>
+                            <strong>Mr. Datta Padre sir</strong>
+                            <span>dattapadre357@gmail.com</span>
+                        </div>
+                    </div>
+
+                    <a href="/admin/profile" class="user-profile-menu-item" role="menuitem">
+                        <i class="fas fa-user-shield" aria-hidden="true"></i>
+                        <span>Profile &amp; Security</span>
+                    </a>
+                    <button type="button" class="user-profile-menu-item" data-bs-toggle="modal" data-bs-target="#settingsModal" role="menuitem">
+                        <i class="fas fa-sliders-h" aria-hidden="true"></i>
+                        <span>Settings</span>
+                    </button>
+                    <button type="button" class="user-profile-menu-item" id="fullscreenToggle" role="menuitem">
+                        <i class="fas fa-expand" aria-hidden="true"></i>
+                        <span>Fullscreen</span>
+                        <kbd>F11</kbd>
+                    </button>
+                    <button type="button" class="user-profile-menu-item" id="printPage" role="menuitem">
+                        <i class="fas fa-print" aria-hidden="true"></i>
+                        <span>Print</span>
+                        <kbd>Ctrl + P</kbd>
+                    </button>
+                    <button type="button" class="user-profile-menu-item" id="resetLayout" role="menuitem">
+                        <i class="fas fa-undo" aria-hidden="true"></i>
+                        <span>Reset Layout</span>
+                    </button>
+
+                    <div class="user-profile-menu-footer">
+                        <a href="/admin/logout">Logout</a>
+                        <span>dattapadre357@gmail.com</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Floating Controls -->
+            <div class="houseowner-floating-controls">
+
+                <div id="google_translate_element"
+                    class="google-translate-container"
+                    aria-label="Choose English, Hindi, or Marathi">
+                </div>
+
+            </div>
+
+        </nav>
+
+        <!-- Page Content -->
+        <div class="content-container">
+
+            <!-- Your EJS page content goes here -->

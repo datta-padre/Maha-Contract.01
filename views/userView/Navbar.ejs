@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maha Contarct</title>
+    <meta
+      name="description"
+      content="Maha Contarct construction tender marketplace"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/client.css" />
+    <link rel="stylesheet" href="/css/terms-of-service.css" />
+    <link rel="stylesheet" href="/css/privacy-policy.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+<div class="background-animation"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/images/logo.jpg" alt="Logo" style="height: 65px; width: auto; border-radius: 8px; object-fit: contain;">
+            <span class="notranslate" style="font-size: 1.4rem;"><span>Maha</span>Contract</span>
+        </div>
+        <div class="nav-links">
+            <a href="/#how-it-works">How It Works</a>
+            <a href="/#verification-process">Verification Process</a>
+            <button class="btn-secondary" onclick="openModal('loginModal')">Login</button>
+            <button class="btn-primary" onclick="openModal('registerModal')">Sign Up</button>
+        </div>
+        <!-- Mobile Nav Toggle -->
+        <div class="mobile-menu-btn" onclick="toggleMobileNav()">
+            <i data-lucide="menu"></i>
+        </div>
+    </nav>
+
+        <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Welcome Back!</h2>
+            <p>Access your MahaContarct account.</p>
+
+            <form onsubmit="event.preventDefault(); goToDashboard('login');">
+                <div class="form-group">
+                    <label>Account Type</label>
+                    <select id="loginRole">
+                        <option value="houseowner">House Owner</option>
+                        <option value="contractor">Contractor</option>
+                        <option value="vendor">System Vendor</option>
+                    </select>
+                </div>
+
+                
+                <div class="form-group">
+                    <label>Phone Number or Email</label>
+                    <input type="text" id="loginEmail" placeholder="Enter your registered contact..." required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPass" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Secure Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Create Account</h2>
+            <p>Join the MahaContarct ecosystem today.</p>
+            
+            <div class="role-selector">
+                <div class="role-card active" onclick="selectRole(this, 'houseowner')">
+                    <i data-lucide="home"></i>
+                    <span>House Owner</span>
+                    <small>Request Builds</small>
+                </div>
+                <div class="role-card" onclick="selectRole(this, 'contractor')">
+                    <i data-lucide="hammer"></i>
+                    <span>Contractor</span>
+                    <small>Bid on Projects</small>
+                </div>
+                <div class="role-card" onclick="selectRole(this, 'systemVendor')">
+                    <i data-lucide="truck"></i>
+                    <span>System Vendor</span>
+                    <small>Sell Materials</small>
+                </div>
+            </div>
+
+            <form id="registerForm" onsubmit="event.preventDefault(); goToDashboard('register');">
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="regPhone" placeholder="+91 98765 43210" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="john@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPass" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Create Account & Go to Dashboard</button>
+            </form>
+        </div>
+    </div>

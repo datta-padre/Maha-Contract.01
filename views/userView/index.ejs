@@ -1,0 +1,220 @@
+<%- include('Navbar.ejs') %>
+
+<div class="background-animation"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/images/logo.jpg" alt="Logo" style="height: 65px; width: auto; border-radius: 8px; object-fit: contain;">
+            <span class="notranslate" style="font-size: 1.4rem;"><span>Maha</span>Contract</span>
+        </div>
+        <div class="nav-links">
+            <a href="#how-it-works">How It Works</a>
+            <a href="#verification-process">Verification Process</a>
+            <button class="btn-secondary" onclick="openModal('loginModal')">Login</button>
+            <button class="btn-primary" onclick="openModal('registerModal')">Sign Up</button>
+        </div>
+        <!-- Mobile Nav Toggle -->
+        <div class="mobile-menu-btn" onclick="toggleMobileNav()">
+            <i data-lucide="menu"></i>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="hero-content">
+            <h1 class="fade-in-up">The World's First <span class="highlight">Private Tender</span> Ecosystem</h1>
+            <p class="fade-in-up delay-1">Transparent bidding, verified contractors, and complete lifecycle tracking for your dream home.</p>
+            <div class="hero-actions fade-in-up delay-2">
+                <button class="btn-primary large" onclick="openModal('registerModal')">Start Your Project</button>
+                <button class="btn-secondary large" onclick="openModal('registerModal')">I am a Contractor</button>
+            </div>
+            
+            <div class="stats-row fade-in-up delay-3">
+                <div class="stat-card">
+                    <i data-lucide="shield-check"></i>
+                    <h3>100%</h3>
+                    <p>Verified Contractors</p>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="banknote"></i>
+                    <h3>Cost Control</h3>
+                    <p>Transparent Bidding</p>
+                </div>
+                <div class="stat-card">
+                    <i data-lucide="activity"></i>
+                    <h3>Real-time</h3>
+                    <p>Project Tracking</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Ecosystem Features Section -->
+    <section class="features-section" style="padding: 5rem 5%; background: var(--surface); border-top: 1px solid var(--surface-border); border-bottom: 1px solid var(--surface-border);">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;"><span class="highlight">Three Pillars</span> of BuildTender</h2>
+            <p style="color: var(--text-muted); margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto;">Our ecosystem is rigorously divided into three distinct modules ensuring 100% accountability.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <!-- Pillar 1 -->
+                <div style="background: var(--background); padding: 2rem; border-radius: 16px; border: 1px solid var(--surface-border); text-align: left;">
+                    <div style="background: rgba(34, 197, 94, 0.1); width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <i data-lucide="shield-check" style="color: #22c55e; width: 30px; height: 30px;"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Ironclad Verifications</h3>
+                    <p style="color: var(--text-muted); line-height: 1.6;">No ghost contractors. Every builder pays a ₹12,775 fee and undergoes a manual 5-point document validation by our Staff before they ever see a tender.</p>
+                </div>
+                
+                <!-- Pillar 2 -->
+                <div style="background: var(--background); padding: 2rem; border-radius: 16px; border: 1px solid var(--surface-border); text-align: left;">
+                    <div style="background: rgba(56, 189, 248, 0.1); width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <i data-lucide="file-check-2" style="color: #38bdf8; width: 30px; height: 30px;"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Private CAD Estimation</h3>
+                    <p style="color: var(--text-muted); line-height: 1.6;">Your residential CAD files are securely parsed by our Estimator Bots. We establish a financial baseline, ensuring contractors cannot overcharge you.</p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div style="background: var(--background); padding: 2rem; border-radius: 16px; border: 1px solid var(--surface-border); text-align: left;">
+                    <div style="background: rgba(168, 85, 247, 0.1); width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+                        <i data-lucide="truck" style="color: #a855f7; width: 30px; height: 30px;"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Localized Vendor Hub</h3>
+                    <p style="color: var(--text-muted); line-height: 1.6;">Contractors buy steel and cement natively inside our marketplace from tested Vendors within a rigid 30km geo-fence, ensuring timeline integrity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" style="padding: 6rem 5%; background: var(--background);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="font-size: 2.8rem; text-align: center; margin-bottom: 1rem;">How It <span class="highlight">Works</span></h2>
+            <p style="text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 4rem;">A fully transparent, automated, and secure 4-step tender pipeline for homeowners.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; position: relative;">
+                <div style="background: var(--surface); padding: 3rem 2rem; border-radius: 16px; border: 1px solid var(--surface-border); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #0284c7); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: bold; margin: 0 auto 1.5rem; color: white; box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);">1</div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.4rem;">Post Tender</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Owners upload their property specifications and blueprints using our advanced digital intake system.</p>
+                </div>
+
+                <div style="background: var(--surface); padding: 3rem 2rem; border-radius: 16px; border: 1px solid var(--surface-border); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #a855f7, #7e22ce); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: bold; margin: 0 auto 1.5rem; color: white; box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);">2</div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.4rem;">Admin Guard</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Our backend QA engine establishes a rigid financial base cost, ensuring zero over-payments.</p>
+                </div>
+
+                <div style="background: var(--surface); padding: 3rem 2rem; border-radius: 16px; border: 1px solid var(--surface-border); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: bold; margin: 0 auto 1.5rem; color: white; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);">3</div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.4rem;">Secure Bidding</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">KYC-Verified contractors bid on your tender. You browse portfolios and lock in the best builder.</p>
+                </div>
+
+                <div style="background: var(--surface); padding: 3rem 2rem; border-radius: 16px; border: 1px solid var(--surface-border); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="width: 70px; height: 70px; background: linear-gradient(135deg, #22c55e, #16a34a); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: bold; margin: 0 auto 1.5rem; color: white; box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);">4</div>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.4rem;">Manage & Build</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Track phase payments while contractors seamlessly order materials from geo-fenced vendors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Subscription Info -->
+    <section class="pricing-section" style="padding: 5rem 5%;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Transparent <span class="highlight">Subscription Pricing</span></h2>
+            <p style="color: var(--text-muted); margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto;">Our ecosystem is rigorously maintained. We charge flat verification and administrative fees to ensure 100% accountability.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <!-- Owner Pricing -->
+                <div class="pricing-card">
+                    <i data-lucide="home" style="color: var(--primary); width: 48px; height: 48px; margin: 0 auto 1rem;"></i>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">House Owner</h3>
+                    <div class="pricing-card-price">₹5,999</div>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem;">+ 18% GST (One-time Listing Fee)</p>
+                    <ul style="list-style: none; padding: 0; text-align: left; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; color: var(--text-muted);">
+                        <li><i data-lucide="check" style="color:#22c55e; width:16px; display:inline; margin-right:8px;"></i> Access to KYC-Verified Builders</li>
+                        <li><i data-lucide="check" style="color:#22c55e; width:16px; display:inline; margin-right:8px;"></i> Budget Admin AI Estimate</li>
+                        <li><i data-lucide="check" style="color:#22c55e; width:16px; display:inline; margin-right:8px;"></i> Complete Phase Tracking</li>
+                    </ul>
+                    <button class="btn-primary full-width" onclick="openModal('registerModal')" style="background:var(--primary);">Post Your Project</button>
+                </div>
+                
+                <!-- Contractor Pricing -->
+                <div class="pricing-card pricing-card-contractor">
+                    <div class="pricing-card-badge">MOST POPULAR</div>
+                    <i data-lucide="hard-hat" class="pricing-card-icon" style="width: 48px; height: 48px; margin: 0 auto 1rem;"></i>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Contractor</h3>
+                    <div class="pricing-card-price">₹12,775</div>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem;">+ 18% GST (Billed Annually)</p>
+                    <ul style="list-style: none; padding: 0; text-align: left; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; color: var(--text-muted);">
+                        <li><i data-lucide="check" style="color:#eab308; width:16px; display:inline; margin-right:8px;"></i> Unlimited Tender Access for 1 Year</li>
+                        <li><i data-lucide="check" style="color:#eab308; width:16px; display:inline; margin-right:8px;"></i> Zero Commission bidding</li>
+                        <li><i data-lucide="check" style="color:#eab308; width:16px; display:inline; margin-right:8px;"></i> Geo-fenced Vendor Network</li>
+                    </ul>
+                    <button class="btn-primary full-width" onclick="openModal('registerModal')" style="background:#eab308; color:#000;">Start Verification</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Verification Process Section -->
+    <section id="verification-process" style="padding: 6rem 5%; background: var(--surface); border-top: 1px solid var(--surface-border);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4rem;">
+                <div style="flex: 1; min-width: 300px;">
+                    <div style="display: inline-block; padding: 0.5rem 1rem; background: rgba(34, 197, 94, 0.1); color: #22c55e; border-radius: 20px; font-weight: bold; margin-bottom: 1rem; border: 1px solid rgba(34, 197, 94, 0.2);">Zero Fraud Guarantee</div>
+                    <h2 style="font-size: 2.8rem; margin-bottom: 1.5rem;">The <span style="color: #22c55e;">Verification</span> Firewall.</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">MahaContarctisn't just a marketplace; it is a closed, heavily audited ecosystem. Unverified workers are systematically barred from interacting with your tender.</p>
+                    <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.5rem;">
+                        <li style="display: flex; gap: 1rem;">
+                            <i data-lucide="shield-check" style="color: #22c55e; flex-shrink: 0; width: 28px; height: 28px;"></i>
+                            <div>
+                                <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem;">5-Point KYC Deep Scan</h4>
+                                <p style="color: var(--text-muted); font-size: 0.95rem;">Aadhaar, PAN, GST, Engineering Degrees, and Police NOCs are manually audited by our Verify Admin team.</p>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 1rem;">
+                            <i data-lucide="file-signature" style="color: var(--accent); flex-shrink: 0; width: 28px; height: 28px;"></i>
+                            <div>
+                                <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem;">₹500 Stamp Paper Binding</h4>
+                                <p style="color: var(--text-muted); font-size: 0.95rem;">Contractors must upload a legally binding stamp agreement locking them into arbitration rules before joining.</p>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 1rem;">
+                            <i data-lucide="microscope" style="color: #a855f7; flex-shrink: 0; width: 28px; height: 28px;"></i>
+                            <div>
+                                <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem;">Physical Quality Matrix</h4>
+                                <p style="color: var(--text-muted); font-size: 0.95rem;">Our Quality Engineers physically visit sites during active phases to guarantee cement/steel grades block corruption.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div style="flex: 1; min-width: 300px; text-align: center; position: relative;">
+                    <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.05), rgba(0,0,0,0)); border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 24px; padding: 4rem 2rem; display: inline-block; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+                        <i data-lucide="fingerprint" style="width: 120px; height: 120px; color: #22c55e; opacity: 0.9; margin-bottom: 2rem;"></i>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;">100% Verified Network</h3>
+                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem;">
+                            <span style="padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: bold; background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid #22c55e;">Owners</span>
+                            <span style="padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: bold; background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid #22c55e;">Contractors</span>
+                            <span style="padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: bold; background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid #22c55e;">Vendors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Map Call to Action -->
+    <section class="landing-cta">
+        <div class="landing-cta-content">
+            <h2>Ready to break ground?</h2>
+            <p>Join the thousands of homeowners and certified builders currently operating securely within our localized 30km clusters.</p>
+            <button class="btn-primary large" onclick="openModal('registerModal')" style="font-size: 1.2rem; padding: 1.2rem 3rem; border-radius: 50px;">Create Free Account</button>
+        </div>
+    </section>
+
+    <!-- <script src="/js/app.js"></script> -->
+    <script>
+      lucide.createIcons();
+    </script>
+<%- include('Footer.ejs') %>
