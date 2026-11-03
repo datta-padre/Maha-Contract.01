@@ -3674,3 +3674,7 @@ tr:hover td {
         max-width: 150px;
         margin: 0;
       }
+
+      .form-label-address{
+        color: #748397;
+      }

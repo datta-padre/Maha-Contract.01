@@ -1,0 +1,491 @@
+<%- include("Navbar.ejs") %>
+
+<style>
+    .tender-builder {
+        --tender-orange: #f97316;
+        --tender-ink: #172033;
+        --tender-muted: #64748b;
+        --tender-border: #e2e8f0;
+        max-width: 1080px;
+        margin: 0 auto;
+        color: var(--tender-ink);
+    }
+
+    .tender-builder .tender-card {
+        border: 1px solid var(--tender-border);
+        border-radius: 18px;
+        box-shadow: 0 12px 35px rgba(15, 23, 42, .06);
+    }
+
+    .tender-builder .tender-section {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--tender-border);
+    }
+
+    .tender-builder .tender-section:last-of-type { border-bottom: 0; }
+
+    .tender-builder .tender-section-title {
+        display: flex;
+        align-items: flex-start;
+        gap: .85rem;
+        margin-bottom: 1.35rem;
+    }
+
+    .tender-builder .tender-step {
+        display: inline-grid;
+        width: 40px;
+        height: 40px;
+        flex: 0 0 40px;
+        place-items: center;
+        border-radius: 12px;
+        background: #fff1e8;
+        color: var(--tender-orange);
+        font-weight: 800;
+    }
+
+    .tender-builder .tender-section-title h2 {
+        margin: 0 0 .25rem;
+        font-size: 1.1rem;
+        font-weight: 750;
+    }
+
+    .tender-builder .tender-section-title p,
+    .tender-builder .field-hint {
+        margin: 0;
+        color: var(--tender-muted);
+        font-size: .86rem;
+    }
+
+    .tender-builder .form-label,
+    .tender-builder legend {
+        color: var(--tender-ink);
+        font-size: .9rem;
+        font-weight: 650;
+    }
+
+    .tender-builder fieldset { min-width: 0; }
+
+    .tender-builder .form-control,
+    .tender-builder .form-select,
+    .tender-builder .input-group-text {
+        min-height: 46px;
+        border-color: var(--tender-border);
+        border-radius: 9px;
+    }
+
+    .tender-builder .form-control:focus,
+    .tender-builder .form-select:focus {
+        border-color: var(--tender-orange);
+        box-shadow: 0 0 0 .2rem rgba(249, 115, 22, .14);
+    }
+
+    .tender-builder textarea.form-control { min-height: 112px; }
+
+    .tender-builder .input-group > .form-control,
+    .tender-builder .input-group > .form-select,
+    .tender-builder .input-group > .input-group-text {
+        border-radius: 9px;
+    }
+
+    .tender-builder .input-group > .form-control:not(:first-child),
+    .tender-builder .input-group > .form-select:not(:first-child) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .tender-builder .input-group > .input-group-text:first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .tender-builder .choice-card {
+        display: flex;
+        height: 100%;
+        min-height: 66px;
+        align-items: flex-start;
+        gap: .7rem;
+        padding: .8rem .9rem;
+        border: 1px solid var(--tender-border);
+        border-radius: 10px;
+        background: #fff;
+        cursor: pointer;
+    }
+
+    .tender-builder .choice-card:has(input:checked) {
+        border-color: var(--tender-orange);
+        background: #fffaf6;
+    }
+
+    .tender-builder .choice-card input,
+    .tender-builder .form-check-input { accent-color: var(--tender-orange); }
+
+    .tender-builder .choice-card strong {
+        display: block;
+        font-size: .88rem;
+        font-weight: 700;
+    }
+
+    .tender-builder .choice-card small {
+        display: block;
+        margin-top: .2rem;
+        color: var(--tender-muted);
+        font-size: .78rem;
+    }
+
+    .tender-builder .upload-box {
+        display: flex;
+        min-height: 84px;
+        align-items: center;
+        gap: .9rem;
+        padding: .9rem;
+        border: 1px dashed #cbd5e1;
+        border-radius: 11px;
+        background: #f8fafc;
+        cursor: pointer;
+    }
+
+    .tender-builder .upload-box > i {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+        place-items: center;
+        border-radius: 10px;
+        background: #fff1e8;
+        color: var(--tender-orange);
+        font-size: 1.1rem;
+    }
+
+    .tender-builder .upload-box strong,
+    .tender-builder .upload-box small { display: block; }
+
+    .tender-builder .upload-box strong { font-size: .88rem; }
+    .tender-builder .upload-box small { margin-top: .2rem; color: var(--tender-muted); }
+    .tender-builder .upload-box input[type="file"] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+    .tender-builder .upload-box:focus-within { outline: 2px solid var(--tender-orange); outline-offset: 2px; }
+
+    .tender-builder .btn-tender {
+        border-color: var(--tender-orange);
+        background: var(--tender-orange);
+        color: #fff;
+        font-weight: 700;
+    }
+
+    .tender-builder .btn-tender:hover,
+    .tender-builder .btn-tender:focus {
+        border-color: #ea580c;
+        background: #ea580c;
+        color: #fff;
+    }
+
+    .tender-builder .submission-notice { display: none; }
+    .tender-builder .submission-notice.is-visible { display: block; }
+
+    @media (max-width: 575.98px) {
+        .tender-builder .tender-section { padding: 1.1rem; }
+        .tender-builder .tender-section-title h2 { font-size: 1rem; }
+    }
+</style>
+
+<main class="content-container px-3 px-md-4 py-4">
+    <div class="tender-builder">
+        <header class="mb-4 d-flex align-items-center justify-content-between gap-3">
+            <div>
+                <p class="mb-1 text-uppercase fw-bold small" style="color:#f97316; letter-spacing:.12em;">Houseowner workspace</p>
+                <h1 class="h2 fw-bold mb-2">Post a Construction Tender</h1>
+                <p class="text-secondary mb-0">Share your project details so builders can prepare accurate proposals.</p>
+            </div>
+            <div class="d-none d-sm-grid rounded-4 p-3" style="place-items:center;background:#fff1e8;color:#f97316;width:56px;height:56px;" aria-hidden="true">
+                <i class="fa-solid fa-house-chimney fs-4"></i>
+            </div>
+        </header>
+
+        <form id="tenderForm" class="tender-card bg-white" novalidate>
+            <section class="tender-section">
+                <div class="tender-section-title">
+                    <span class="tender-step">01</span>
+                    <div>
+                        <h2>Land &amp; geological inputs</h2>
+                        <p>Tell builders about the plot and its site conditions.</p>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label" for="plotArea">Plot area <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <input class="form-control" id="plotArea" name="plotArea" type="number" min="0.01" step="any" placeholder="e.g. 1200" required>
+                            <select class="form-select" name="plotAreaUnit" aria-label="Plot area unit" style="max-width:130px;">
+                                <option value="sq-ft">Sq. ft</option>
+                                <option value="sq-m">Sq. m</option>
+                                <option value="guntha">Guntha</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="soilType">Type of soil <span class="text-danger">*</span></label>
+                        <select class="form-select" id="soilType" name="soilType" required>
+                            <option value="">Select soil type</option>
+                            <option>Black cotton</option>
+                            <option>Red soil</option>
+                            <option>Sandy</option>
+                            <option>Mixed</option>
+                            <option>Other / Unknown</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="plotLocation">Plot location (Google Maps pin link) <span class="text-danger">*</span></label>
+                        <input class="form-control" id="plotLocation" name="plotLocation" type="url" placeholder="https://maps.google.com/..." required>
+                        <div class="field-hint mt-1">Paste a share link that opens the location in Google Maps.</div>
+                    </div>
+                    <fieldset class="col-12">
+                        <legend class="mb-2">Type of construction <span class="text-danger">*</span></legend>
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <label class="choice-card">
+                                    <input class="form-check-input mt-1" type="radio" name="constructionType" value="RCC structure" required>
+                                    <span><strong>RCC structure</strong><small>Pillars and beams</small></span>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="choice-card">
+                                    <input class="form-check-input mt-1" type="radio" name="constructionType" value="Load bearing structure">
+                                    <span><strong>Load-bearing structure</strong><small>Brick walls</small></span>
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </section>
+
+            <section class="tender-section">
+                <div class="tender-section-title">
+                    <span class="tender-step">02</span>
+                    <div>
+                        <h2>Blueprints &amp; materials</h2>
+                        <p>Clarify material sourcing and whether your house plans are ready.</p>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <fieldset class="col-12">
+                        <legend class="mb-2">Who will provide construction materials? <span class="text-danger">*</span></legend>
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <label class="choice-card">
+                                    <input class="form-check-input mt-1" type="radio" name="materialSupply" value="Contractor provides materials" required>
+                                    <span><strong>Contractor provides materials</strong><small>I will not procure materials myself.</small></span>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="choice-card">
+                                    <input class="form-check-input mt-1" type="radio" name="materialSupply" value="Owner provides materials">
+                                    <span><strong>I will provide materials</strong><small>I will procure my own materials.</small></span>
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="col-12">
+                        <legend class="mb-2">Do you have a finalized house plan? <span class="text-danger">*</span></legend>
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <label class="choice-card">
+                                    <input class="form-check-input mt-1" type="radio" name="housePlan" value="Design required" required>
+                                    <span><strong>Not yet</strong><small>I need the contractor to design it.</small></span>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="choice-card">
+                                    <input class="form-check-input mt-1" type="radio" name="housePlan" value="Plans ready">
+                                    <span><strong>Plans are ready</strong><small>I have CAD/PDF architectural plans.</small></span>
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="col-12">
+                        <label class="form-label" for="plotDocuments">Official plot documents</label>
+                        <p class="field-hint mb-2">Upload 7/12 extract and ownership proof for admin verification. PDF, JPG, or PNG; multiple files allowed.</p>
+                        <label class="upload-box">
+                            <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
+                            <span><strong>Choose plot documents</strong><small>Click to browse files</small></span>
+                            <input id="plotDocuments" name="plotDocuments" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" multiple>
+                        </label>
+                        <div class="field-hint mt-2" id="plotDocumentsNames" aria-live="polite">No files selected</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tender-section">
+                <div class="tender-section-title">
+                    <span class="tender-step">03</span>
+                    <div>
+                        <h2>Ancillary construction requirements</h2>
+                        <p>Select any additional work to include in the project scope.</p>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <fieldset class="col-12">
+                        <legend class="mb-2">Additional work required</legend>
+                        <div class="row g-2">
+                            <div class="col-sm-6">
+                                <label class="form-check"><input class="form-check-input" type="checkbox" name="additionalWork" value="Interior and furniture work"><span class="form-check-label">Interior &amp; furniture work</span></label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-check"><input class="form-check-input" type="checkbox" name="additionalWork" value="Electrical wiring and fitting"><span class="form-check-label">Electrical wiring &amp; fitting</span></label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-check"><input class="form-check-input" type="checkbox" name="additionalWork" value="Colouring and painting"><span class="form-check-label">Colouring &amp; painting</span></label>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-check"><input class="form-check-input" type="checkbox" name="additionalWork" value="Plumbing and layout pipes"><span class="form-check-label">Plumbing &amp; layout pipes</span></label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="col-md-6">
+                        <label class="form-label" for="externalWorks">External works required?</label>
+                        <select class="form-select" id="externalWorks" name="externalWorks">
+                            <option value="">Select external works</option>
+                            <option>No additional external works</option>
+                            <option>Gate installation only</option>
+                            <option>Parking &amp; garden area leveling</option>
+                            <option>Gate, parking &amp; garden</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="boundaryWall">Boundary wall type</label>
+                        <select class="form-select" id="boundaryWall" name="boundaryWall">
+                            <option value="">Select boundary type</option>
+                            <option>No boundary wall</option>
+                            <option>Cement / concrete wall</option>
+                            <option>Metal wire fencing</option>
+                            <option>Brick wall</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tender-section">
+                <div class="tender-section-title">
+                    <span class="tender-step">04</span>
+                    <div>
+                        <h2>Financial parameters &amp; scope</h2>
+                        <p>Set your budget, house configuration, and expected timeline.</p>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label" for="budget">Maximum out-of-pocket budget (₹) <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-text">₹</span>
+                            <input class="form-control" id="budget" name="budget" type="number" min="1" step="1000" placeholder="e.g. 2500000" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="bhk">Required BHK configuration <span class="text-danger">*</span></label>
+                        <select class="form-select" id="bhk" name="bhk" required>
+                            <option value="">Select configuration</option>
+                            <option>1 BHK</option>
+                            <option>2 BHK</option>
+                            <option>3 BHK</option>
+                            <option>4+ BHK / Villa</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="floors">Number of floors (G + X) <span class="text-danger">*</span></label>
+                        <input class="form-control" id="floors" name="floors" type="number" min="0" max="100" step="1" placeholder="Floors above ground" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="duration">Expected time of construction (months) <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <input class="form-control" id="duration" name="duration" type="number" min="1" max="600" step="1" placeholder="e.g. 12" required>
+                            <span class="input-group-text">Months</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="notes">Special instructions / custom notes for builders</label>
+                        <textarea class="form-control" id="notes" name="notes" rows="4" placeholder="Share preferences, access details, or other project requirements..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section class="tender-section">
+                <div class="tender-section-title">
+                    <span class="tender-step">05</span>
+                    <div>
+                        <h2>Digital signature authorization</h2>
+                        <p>Upload your signature image to authorize the tender details.</p>
+                    </div>
+                </div>
+                <label class="form-label" for="ownerSignature">House owner digital signature (PNG/JPG) <span class="text-danger">*</span></label>
+                <label class="upload-box">
+                    <i class="fa-solid fa-signature" aria-hidden="true"></i>
+                    <span><strong>Upload signature image</strong><small>PNG or JPG · Required</small></span>
+                    <input id="ownerSignature" name="ownerSignature" type="file" accept=".png,.jpg,.jpeg,image/png,image/jpeg" required>
+                </label>
+                <div class="field-hint mt-2" id="ownerSignatureName" aria-live="polite">No file selected</div>
+            </section>
+
+            <div class="p-3 p-md-4 d-flex flex-column flex-sm-row justify-content-end gap-2">
+                <button class="btn btn-outline-secondary px-4" type="reset">Clear form</button>
+                <button class="btn btn-tender px-4 py-2" type="submit">
+                    <i class="fa-solid fa-clipboard-check me-2" aria-hidden="true"></i>Review tender details
+                </button>
+            </div>
+        </form>
+
+        <div class="alert alert-warning submission-notice mt-3 mb-0" id="submissionNotice" role="status" aria-live="polite" tabindex="-1">
+            Your required details are valid. This page is not connected to a tender submission service, so your information and files have not been sent or saved.
+        </div>
+    </div>
+</main>
+
+<script>
+    (() => {
+        const form = document.getElementById('tenderForm');
+        if (!form) return;
+
+        const fileInputs = [
+            { input: document.getElementById('plotDocuments'), output: document.getElementById('plotDocumentsNames'), multiple: true },
+            { input: document.getElementById('ownerSignature'), output: document.getElementById('ownerSignatureName'), multiple: false }
+        ];
+
+        const showFileNames = ({ input, output, multiple }) => {
+            if (!input || !output) return;
+            const files = Array.from(input.files || []);
+            output.textContent = files.length
+                ? (multiple && files.length > 1 ? `${files.length} files selected: ${files.map(file => file.name).join(', ')}` : files.map(file => file.name).join(', '))
+                : 'No files selected';
+        };
+
+        fileInputs.forEach(({ input, output, multiple }) => {
+            input.addEventListener('change', () => {
+                if (input.id === 'ownerSignature') input.setCustomValidity('');
+                showFileNames({ input, output, multiple });
+            });
+        });
+
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            const notice = document.getElementById('submissionNotice');
+            notice.classList.remove('is-visible');
+            document.getElementById('ownerSignature').setCustomValidity('');
+
+            if (!form.reportValidity()) return;
+
+            const signature = document.getElementById('ownerSignature').files[0];
+            if (signature && !['image/png', 'image/jpeg'].includes(signature.type)) {
+                document.getElementById('ownerSignature').setCustomValidity('Please select a PNG or JPG image for your signature.');
+                document.getElementById('ownerSignature').reportValidity();
+                return;
+            }
+            notice.classList.add('is-visible');
+            notice.focus();
+        });
+
+        form.addEventListener('reset', () => {
+            document.getElementById('ownerSignature').setCustomValidity('');
+            document.getElementById('submissionNotice').classList.remove('is-visible');
+            window.setTimeout(() => fileInputs.forEach(showFileNames), 0);
+        });
+    })();
+</script>
+
+<%- include("Footer.ejs") %>

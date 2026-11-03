@@ -1,0 +1,62 @@
+.company-about-page {
+  --admin-primary: #F06310;
+}
+
+.company-about-page .btn-primary {
+  background-color: #F06310;
+  border-color: #F06310;
+  color: #fff;
+  --bs-btn-bg: var(--admin-primary);
+  --bs-btn-border-color: var(--admin-primary);
+  --bs-btn-hover-bg: #d9560c;
+  --bs-btn-hover-border-color: #d9560c;
+  --bs-btn-active-bg: #c94f0b;
+  --bs-btn-active-border-color: #c94f0b;
+  --bs-btn-focus-shadow-rgb: 240, 99, 16;
+}
+
+.company-about-page .btn-primary:hover,
+.company-about-page .btn-primary:focus-visible {
+  background-color: #d9560c;
+  border-color: #d9560c;
+  color: #fff;
+}
+
+.company-about-page .btn-primary:active {
+  background-color: #c94f0b;
+  border-color: #c94f0b;
+}
+
+.company-about-page {
+  --company-panel: #fff;
+  --company-text: #212529;
+  --company-border: #dee2e6;
+}
+
+.company-about-page .company-title-panel,
+.company-about-page .company-form-panel {
+  background-color: var(--company-panel);
+  color: var(--company-text);
+  border-color: var(--company-border) !important;
+}
+
+.company-about-page .company-title-panel h1 {
+  color: var(--company-text);
+}
+
+body.houseowner-dark-theme .company-about-page {
+  --company-panel: #1d2028;
+  --company-text: #f8fafc;
+  --company-border: #343844;
+}
+
+body.houseowner-dark-theme .company-about-page .company-title-panel,
+body.houseowner-dark-theme .company-about-page .company-form-panel {
+  background-color: var(--company-panel) !important;
+  color: var(--company-text);
+  border-color: var(--company-border) !important;
+}
+
+body.houseowner-dark-theme .company-about-page .company-title-panel h1 {
+  color: var(--company-text);
+}
