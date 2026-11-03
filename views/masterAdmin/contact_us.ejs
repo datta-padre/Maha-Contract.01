@@ -1,0 +1,91 @@
+<%- include("Navbar.ejs") %>
+
+<div class="container company-about-page contact-us-page">
+
+    <div class="row company-title-panel p-3 bg-white rounded border shadow-sm mt-3">
+        <div class="col-md-12">
+            <h1 class="company-title fw-bold">Contact Us</h1>
+        </div>
+    </div>
+
+    <div class="table-responsive contact-messages-panel rounded shadow-sm mt-4 p-3 bg-white border px-4">
+
+        <table class="table contact-messages-table table-striped table-bordered table-hover align-middle mb-0">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>Sr.No</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Topic</th>
+                    <th>Message</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% if (contact_messages && contact_messages.length > 0) { %>
+
+                    <% contact_messages.forEach(function(message, index) { %>
+
+                        <tr>
+                            <td><%= index + 1 %></td>
+
+                            <td>
+                                <%= message.name %>
+                            </td>
+
+                            <td>
+                                <a href="tel:<%= message.phone %>">
+                                  <%= message.countryCode %> <%= message.phone %>
+                                </a>
+                            </td>
+
+                            <td>
+                                <span>
+                                  <b>  <%= message.topic %></b>
+                                </span>
+                            </td>
+
+                            <td style="min-width: 200px; max-width: 350px;">
+                                <%= message.message %>
+                            </td>
+
+                            <td style="min-width: 180px;">
+                                <%= new Date(message.created_at).toLocaleString('en-IN', {
+                                    day: '2-digit',
+                                    month: 'short',
+                                    year: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    hour12: true
+                                }) %>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm">Reply</button>
+                            </td>
+                        </tr>
+
+                    <% }); %>
+
+                <% } else { %>
+
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-4">
+                            No contact messages found.
+                        </td>
+                    </tr>
+
+                <% } %>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<%- include("Footer.ejs") %>

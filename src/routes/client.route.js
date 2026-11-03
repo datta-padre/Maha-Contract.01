@@ -23,8 +23,8 @@ router.get("/contact-us", async (req, res) => {
 });
 
 router.post("/contact", async (req, res) => {
-    const { name, email, message } = req.body;
-    const about_company = await executeQuery('SELECT * FROM about_company');
+    const { name, countryCode, phone, topic, message } = req.body;
+    await executeQuery('INSERT INTO contact_messages (name, countryCode, phone, topic, message) VALUES (?, ?, ?, ?, ?)', [name, countryCode, phone, topic, message]);
     res.redirect("/contact-us");
 });
 

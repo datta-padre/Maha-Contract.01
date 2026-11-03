@@ -60,3 +60,48 @@ body.houseowner-dark-theme .company-about-page .company-form-panel {
 body.houseowner-dark-theme .company-about-page .company-title-panel h1 {
   color: var(--company-text);
 }
+
+.contact-us-page {
+  --contact-panel: #fff;
+  --contact-text: #212529;
+  --contact-border: #dee2e6;
+  --contact-row-alt: #f2f4f7;
+  --contact-row-hover: #e9ecef;
+}
+
+.contact-us-page .company-title-panel,
+.contact-us-page .contact-messages-panel {
+  background-color: var(--contact-panel) !important;
+  color: var(--contact-text);
+  border-color: var(--contact-border) !important;
+}
+
+.contact-us-page .company-title {
+  color: var(--contact-text);
+}
+
+.contact-us-page .contact-messages-table {
+  --bs-table-bg: var(--contact-panel);
+  --bs-table-color: var(--contact-text);
+  --bs-table-border-color: var(--contact-border);
+  --bs-table-striped-bg: var(--contact-row-alt);
+  --bs-table-striped-color: var(--contact-text);
+  --bs-table-hover-bg: var(--contact-row-hover);
+  --bs-table-hover-color: var(--contact-text);
+}
+
+.contact-us-page .contact-messages-table a {
+  color: inherit;
+}
+
+body.houseowner-dark-theme .contact-us-page {
+  --contact-panel: #1d2028;
+  --contact-text: #f8fafc;
+  --contact-border: #343844;
+  --contact-row-alt: #252933;
+  --contact-row-hover: #303541;
+}
+
+body.houseowner-dark-theme .contact-us-page .text-muted {
+  color: #adb5bd !important;
+}
