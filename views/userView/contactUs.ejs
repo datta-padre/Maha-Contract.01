@@ -11,31 +11,31 @@
     </header>
 
     <section class="contact-info-grid" aria-label="Contact and support information">
-      <a class="contact-info-card" href="mailto:dattapadre357@gmail.com" aria-label="Email us at dattapadre357@gmail.com">
+      <a class="contact-info-card" href="mailto:<%= about_company.company_email %>" aria-label="Email us at <%= about_company.company_email %>">
         <i class="ri-mail-line contact-card-icon contact-email-icon" aria-hidden="true"></i>
         <h2>Email</h2>
-        <span class="contact-card-link">dattapadre357@gmail.com</span>
+        <span class="contact-card-link"><%= about_company.company_email %></span>
         <p>For account, tender, or payment questions.</p>
       </a>
 
-      <a class="contact-info-card" href="https://wa.me/917249329153" target="_blank" rel="noopener noreferrer" aria-label="Chat with support on WhatsApp">
+      <a class="contact-info-card" href="https://wa.me/91<%= about_company.company_whatsapp %>" target="_blank" rel="noopener noreferrer" aria-label="Chat with support on WhatsApp">
         <i class="ri-whatsapp-line contact-card-icon contact-chat-icon" aria-hidden="true"></i>
         <h2>WhatsApp Support</h2>
-        <span class="contact-card-link">+91 72493 29153</span>
+        <span class="contact-card-link">+91 <%= about_company.company_whatsapp %></span>
         <p>Chat with us about login, profile, or verification.</p>
       </a>
 
-      <a class="contact-info-card" href="tel:+917249329153" aria-label="Call support at +91 72493 29153">
+      <a class="contact-info-card" href="tel:+91<%= about_company.company_mobile %>" aria-label="Call support at +91 <%= about_company.company_mobile %>">
         <i class="ri-phone-line contact-card-icon contact-phone-icon" aria-hidden="true"></i>
         <h2>Call Support</h2>
-        <span class="contact-card-link">+91 72493 29153</span>
+        <span class="contact-card-link">+91 <%= about_company.company_mobile %></span>
         <p>Call us between 10:00 AM and 6:00 PM.</p>
       </a>
 
-      <a class="contact-info-card" href="https://www.google.com/maps/search/?api=1&amp;query=Balikashram+Road%2C+Ahilyanagar%2C+Maharashtra%2C+India" target="_blank" rel="noopener noreferrer" aria-label="View our location on Google Maps">
+      <a class="contact-info-card" href="https://www.google.com/maps/search/?api=1&amp;query=<%= encodeURIComponent(about_company.company_address) %>" target="_blank" rel="noopener noreferrer" aria-label="View our location on Google Maps">
         <i class="ri-map-pin-2-line contact-card-icon contact-location-icon" aria-hidden="true"></i>
         <h2>Location</h2>
-        <span class="contact-card-link">Balikashram Road, Ahilyanagar</span>
+        <span class="contact-card-link"><%= about_company.company_address %></span>
         <p>Maharashtra, India · Open in Google Maps</p>
       </a>
     </section>

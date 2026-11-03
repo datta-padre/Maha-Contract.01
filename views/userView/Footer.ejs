@@ -4,17 +4,17 @@
       <a href="/">
       <div class="logo footer-logo">
         <img src="/images/logo.jpg" alt="Maha Contarct logo" />
-        <span class="notranslate"><span>Maha</span>Contract</span>
+        <span class="notranslate"><%= about_company.company_name %></span>
       </div>
       </a>
       <p>Modern, transparent, and accountable tender management for homeowners, contractors, and vendors.</p>
       <div class="footer-socials">
-        <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
-        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="ri-facebook-box-fill"></i></a>
-        <a href="https://x.com" target="_blank" aria-label="Twitter"><i class="ri-twitter-fill"></i></a>
-        <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
-        <a href="https://www.youtube.com" target="_blank" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
-        <a href="https://www.whatsapp.com" target="_blank" aria-label="WhatsApp"><i class="ri-whatsapp-line"></i></a>
+        <a href="<%= about_company.linkedIn %>" target="_blank" aria-label="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
+        <a href="<%= about_company.facebook %>" target="_blank" aria-label="Facebook"><i class="ri-facebook-box-fill"></i></a>
+        <a href="<%= about_company.twitter %>" target="_blank" aria-label="Twitter"><i class="ri-twitter-fill"></i></a>
+        <a href="<%= about_company.instagram %>" target="_blank" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+        <a href="<%= about_company.youtube %>" target="_blank" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+        <a href="https://wa.me/91<%= about_company.company_mobile %>" target="_blank" aria-label="WhatsApp"><i class="ri-whatsapp-line"></i></a>
       </div>
     </div>
 
@@ -35,7 +35,7 @@
         <a href="/privacy-policy">Privacy Policy</a>
         <a href="/terms-of-service">Terms of Service</a>
         <a href="/contact-us">Contact Us</a>
-        <b class="form-label-address">Address: 123 Main Street, City, State 12345</b>
+        <b class="form-label-address">Address: <%= about_company.company_address %></b>
       </div>
     </div>
   </div>
