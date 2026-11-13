@@ -283,6 +283,10 @@
       text-decoration: none;
     }
 
+    .user-profile-menu-footer a.text-red-300 {
+      color: #dc2626;
+    }
+
     .user-profile-menu-footer span {
       overflow: hidden;
       text-overflow: ellipsis;

@@ -172,14 +172,14 @@
                 <!-- User Dropdown -->
                 <div class="dropdown-menu user-profile-dropdown" id="userDropdown" role="menu" aria-label="User menu">
                     <div class="user-profile-menu-header">
-                        <img src="/upload" alt="Datta Padre">
+                        <img src="/upload" alt="<%=houseowner_profile.user_name%>">
                         <div>
-                            <strong>Mr. Datta Padre sir</strong>
-                            <span>dattapadre357@gmail.com</span>
+                            <strong>Mr. <%=houseowner_profile.user_name%></strong>
+                            <span><%=houseowner_profile.user_email%></span>
                         </div>
                     </div>
 
-                    <a href="/admin/profile" class="user-profile-menu-item" role="menuitem">
+                    <a href="/houseowner/profile" class="user-profile-menu-item" role="menuitem">
                         <i class="fas fa-user-shield" aria-hidden="true"></i>
                         <span>Profile &amp; Security</span>
                     </a>
@@ -203,8 +203,8 @@
                     </button>
 
                     <div class="user-profile-menu-footer">
-                        <a href="/admin/logout">Logout</a>
-                        <span>dattapadre357@gmail.com</span>
+                        <a class="text-red-300" href="/houseowner/logout">Logout</a>
+                        <span><%=houseowner_profile.user_email%></span>
                     </div>
                 </div>
 

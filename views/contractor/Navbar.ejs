@@ -173,10 +173,10 @@
                 <!-- User Dropdown -->
                 <div class="dropdown-menu user-profile-dropdown" id="userDropdown" role="menu" aria-label="User menu">
                     <div class="user-profile-menu-header">
-                        <img src="/upload" alt="Datta Padre">
+                        <img src="/upload" alt="<%=contractor_profile.user_name%>">
                         <div>
-                            <strong>Mr. Datta Padre sir</strong>
-                            <span>dattapadre357@gmail.com</span>
+                            <strong>Mr. <%=contractor_profile.user_name %></strong>
+                            <span><%=contractor_profile.user_email %></span>
                         </div>
                     </div>
 
@@ -204,8 +204,8 @@
                     </button>
 
                     <div class="user-profile-menu-footer">
-                        <a href="/admin/logout">Logout</a>
-                        <span>dattapadre357@gmail.com</span>
+                        <a href="/contractor/logout">Logout</a>
+                        <span><%=contractor_profile.user_email %></span>
                     </div>
                 </div>
 
