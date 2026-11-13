@@ -1,5 +1,10 @@
 import { Router } from "express";
+import { authenticateUser } from "../middleware/auth.js";
+
+
 const router = Router();
+
+router.use(authenticateUser("houseowner"));
 
 router.get("/", (req, res) => {
     res.render("houseowner/index");

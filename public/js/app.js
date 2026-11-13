@@ -35,12 +35,13 @@ function selectRole(element, role) {
 function goToDashboard(mode) {
 if (mode === 'register') {
 
+    const name = document.getElementById('regName').value.trim();
     const phone = document.getElementById('regPhone').value.trim();
     const email = document.getElementById('regEmail').value.trim();
     const pass = document.getElementById('regPass').value;
 
     // Basic validation
-    if (!phone || !email || !pass) {
+    if (!name || !phone || !email || !pass) {
         alert('Please fill all fields.');
         return;
     }
@@ -56,6 +57,7 @@ if (mode === 'register') {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+            name: name,
             phone: phone,
             email: email,
             password: pass,

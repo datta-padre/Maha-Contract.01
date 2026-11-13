@@ -28,16 +28,31 @@ router.post("/contact", async (req, res) => {
     res.redirect("/contact-us");
 });
 
+router.get("/error/403", (req, res) => {
+    res.render("userView/error403.ejs");
+});
+
 router.post("/register/:role", async (req, res) => {
-    const { phone, email, password } = req.body;
+    const { name, phone, email, password } = req.body;
     const role = req.params.role;
+    var user = await executeQuery(`INSERT INTO users(user_name,user_mobile, user_email, user_password, user_role) VALUES (?, ?, ?, ?, ?)`, [name, phone, email, password, role]);
+    console.log(user.insertId);
+    req.session.userId = user.insertId;
+    req.session.userRole = role;
     res.json({ success: true, message: "User registered successfully" });
 });
 
 router.post("/login/:role", async (req, res) => {
     const { email, password } = req.body;
     const role = req.params.role;
-    res.json({ success: true, message: "User logged in successfully" });
+    var user = await executeQuery(`SELECT * FROM users WHERE user_email = ? AND user_password = ? AND user_role = ?`, [email, password, role]);
+    if (user.length > 0) {
+        req.session.userId = user[0].user_id;
+        req.session.userRole = role;
+        res.json({ success: true, message: "User logged in successfully" });
+    } else {
+        res.json({ success: false, message: "Invalid credentials" });
+    }
 });
 
 export default router;

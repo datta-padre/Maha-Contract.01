@@ -1,8 +1,11 @@
 import {Router} from 'express';
+import { authenticateUser } from "../middleware/auth.js";
 
 const router = Router();
 
-router.get('/', (req, res) => {
+router.use(authenticateUser("contractor"));
+
+router.get('/', async (req, res) => {
   res.render("contractor/index.ejs");
 });
 
