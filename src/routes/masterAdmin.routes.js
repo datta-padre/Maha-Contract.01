@@ -42,8 +42,8 @@ router.get('/about_company', masterAdminAuth(), async (req, res) => {
 });
 
 router.post('/save_company', masterAdminAuth(), async (req, res) => {
-  const { company_name, company_address, company_email, company_mobile, company_whatsapp, instagram, facebook, twitter, linkedin } = req.body;
-  await executeQuery(`UPDATE about_company SET company_name = ?, company_address = ?, company_email = ?, company_mobile = ?, company_whatsapp = ?, instagram = ?, facebook = ?, twitter = ?, linkedin = ? WHERE company_id = 1`, [company_name, company_address, company_email, company_mobile, company_whatsapp, instagram, facebook, twitter, linkedin]);
+  const { company_name, company_address, company_email, company_mobile, company_whatsapp, instagram, youtube, facebook, twitter, linkedin } = req.body;
+  await executeQuery(`UPDATE about_company SET company_name = ?, company_address = ?, company_email = ?, company_mobile = ?, company_whatsapp = ?, instagram = ?,youtube = ?, facebook = ?, twitter = ?, linkedin = ? WHERE company_id = 1`, [company_name, company_address, company_email, company_mobile, company_whatsapp, instagram, youtube, facebook, twitter, linkedin]);
   res.redirect('/masterAdmin/about_company');
 }); 
 
@@ -61,5 +61,6 @@ router.get("/logout", (req, res) => {
     res.redirect("/masterAdmin/login");
   });
 });
+
 
 export default router;

@@ -7,8 +7,14 @@ import contractorRoutes from "./routes/contractor.routes.js";
 import systemVendorRoutes from "./routes/systemVendor.routes.js";
 
 import masterAdminRoutes from "./routes/masterAdmin.routes.js"; 
+import dotenv from "dotenv";
+import cors from "cors";
+import fs from "fs";
+
+dotenv.config();
 
 const app = express();
+app.use(cors());
 const publicDirectory = fileURLToPath(new URL("../public", import.meta.url));
 
 app.set("view engine", "ejs");

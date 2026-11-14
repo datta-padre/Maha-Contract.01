@@ -1,0 +1,57 @@
+router.post("/save_project", uploadProjectImage([
+    { name: "project_image", maxCount: 1 },
+    { name: "image", maxCount: 1 },]), async (req, res) => {
+
+  const { project_name, project_description } = req.body;
+
+  const projectImage = req.files?.project_image?.[0];
+  const image = req.files?.image?.[0];
+
+  const projectImageData = await uploadToS3(projectImage, projectImage.originalname);
+  const imageData = await uploadToS3(image, image.originalname);
+
+  var sql = `INSERT INTO projects (project_name, project_description, project_image, image) VALUES ('${project_name}', '${project_description}', '${projectImageData.fileKey}', '${imageData.fileKey}')`;
+
+  res.send(sql);
+});
+
+
+
+
+
+
+
+
+
+<%- include("Navbar.ejs") %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Add Project</h1>
+        </div>
+        <div class="col-md-12">
+            <form action="/contractor/save_project" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="project_name" class="form-label">Project Name</label>
+                    <input type="text" class="form-control" id="project_name" name="project_name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="project_description" class="form-label">Project Description</label>
+                    <textarea class="form-control" id="project_description" name="project_description" rows="5" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="project_image" class="form-label">Project Image</label>
+                    <input type="file" class="form-control" id="project_image" name="project_image" accept=".pdf" required>
+                </div>
+                 <div class="mb-3">
+                    <label for="image" class="form-label">Project Image</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Project</button>
+            </form> 
+        </div>
+    </div>
+</div>
+
+<%- include("Footer.ejs") %>
